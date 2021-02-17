@@ -7,7 +7,9 @@ describe("Turing Cafe", () => {
         .get('.card').should('be.visible')
     })
 
-    // need to test for the network requests
+    it.only('Should see reservation cards displayed on the homepage', () => {
+        cy.fixture('testReservationData.json')
+    })
 
     it('Should be able to fill out the form with inputs', () => {
         cy.visit("http://localhost:3000/")
@@ -54,6 +56,12 @@ describe("Turing Cafe", () => {
         cy.visit("http://localhost:3000/")
         .get(".cancelButton")
         .click({multiple: true})
+    })
+
+    it.skip('Should be able to cancel the reservation and see the reservation disappear from the screen', () => {
+        cy.visit("http://localhost:3000/")
+          .get(".cancelButton")
+          .click({ multiple: true });
     })
 
 })
