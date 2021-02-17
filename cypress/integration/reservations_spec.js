@@ -49,6 +49,8 @@ describe("Turing Cafe", () => {
           .get(".card")
           .should("be.visible");
     })
+
+    
 })
 
 //add something to test items inside each card
