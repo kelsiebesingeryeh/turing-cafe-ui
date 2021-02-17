@@ -17,6 +17,15 @@ class Form extends Component {
         })
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const newReservation = {
+            id: Date.now(),
+            ...this.state
+        }
+        this.props.addReservation(newReservation);
+    }
+
 
     render() {
         return (
@@ -49,7 +58,7 @@ class Form extends Component {
               value={this.state.number}
               onChange={this.handleChange}
             />
-          <button>Make Reservation</button>
+          <button onClick={this.handleSubmit}>Make Reservation</button>
           </form>
         );
     }
