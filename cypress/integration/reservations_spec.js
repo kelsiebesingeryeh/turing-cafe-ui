@@ -7,8 +7,20 @@ describe("Turing Cafe", () => {
         .get('.card').should('be.visible')
     })
 
-    it.only('Should see reservation cards displayed on the homepage', () => {
-        cy.fixture('testReservationData.json')
+    it('Should see reservation cards displayed on the homepage', () => {
+        cy.fixture("testReservationData.json")
+          .then((reservationData) => {
+            cy.intercept("GET", "http://localhost:3001/api/v1/reservations", {
+              statusCode: 200,
+              body: {
+                reservations: reservationData,
+              },
+            })
+          })
+        //   .get(".card")
+        //   .should("exist")
+        //   .get(".reservationName")
+        //   .should('exist')
     })
 
     it('Should be able to fill out the form with inputs', () => {
@@ -26,6 +38,36 @@ describe("Turing Cafe", () => {
           .type("2")
           .should("have.value", "2");
     })
+
+    it.only('Should be able to make a post request after filling out the form', () => {
+        cy.visit("http://localhost:3000/")
+          .intercept("POST", "http://localhost:3001/api/v1/reservations", {
+            statusCode: 201,
+            body: {
+              id: 500,
+              name: "Kelsie Yeh",
+              date: "6/5",
+              time: "7:00",
+              number: 2,
+            },
+          })
+          .get("form input[name=name]")
+          .type("kelsie b")
+          .should("have.value", "kelsie b")
+          .get("form input[name=date]")
+          .type("5/5")
+          .should("have.value", "5/5")
+          .get("form input[name=time]")
+          .type("6:00")
+          .should("have.value", "6:00")
+          .get("form input[name=number]")
+          .type("5")
+          .should("have.value", "5")
+          .get("form button")
+          .click()
+          .get(".card")
+          .should("be.visible");
+    })    
 
     it('Should be able to click the reservation button', () => {
         cy.visit("http://localhost:3000/").get("form button").click();
@@ -52,7 +94,7 @@ describe("Turing Cafe", () => {
           .should("be.visible");
     })
 
-    it('Should be able to click the cancel reservation button', () => {
+    it.skip('Should be able to click the cancel reservation button', () => {
         cy.visit("http://localhost:3000/")
         .get(".cancelButton")
         .click({multiple: true})
