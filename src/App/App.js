@@ -46,6 +46,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {this.state.error && 
+        <h2>{this.state.error}</h2>
+        }
         <h1 className="appTitle">Turing Cafe Reservations</h1>
         <div className="resyForm">
           <Form addReservation={this.addReservation} />

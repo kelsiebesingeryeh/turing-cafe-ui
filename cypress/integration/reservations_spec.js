@@ -50,7 +50,12 @@ describe("Turing Cafe", () => {
           .should("be.visible");
     })
 
-    
+    it('Should be able to click the cancel reservation button', () => {
+        cy.visit("http://localhost:3000/")
+        .get(".cancelButton")
+        .click({multiple: true})
+    })
+
 })
 
 //add something to test items inside each card
