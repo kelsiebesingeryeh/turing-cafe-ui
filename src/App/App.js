@@ -23,17 +23,26 @@ class App extends Component {
       })
   }
 
+  cancelReservation = (id) => {
+    const filteredReservations = this.state.reservations.filter(resy => resy.id  !== id)
+    
+    this.setState({
+      reservations: filteredReservations
+    })
+  }
+
 
   render() {
     return (
       <div className="App">
         <h1 className="appTitle">Turing Cafe Reservations</h1>
         <div className="resyForm">
-          <Form 
-          addReservation={this.addReservation} 
-          />
+          <Form addReservation={this.addReservation} />
         </div>
-          <Reservations reservations={this.state.reservations} />
+        <Reservations
+          reservations={this.state.reservations}
+          cancelReservation={this.cancelReservation}
+        />
       </div>
     );
   }
