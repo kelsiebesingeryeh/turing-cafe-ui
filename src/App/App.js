@@ -58,7 +58,7 @@ class App extends Component {
           cancelReservation={this.cancelReservation}
         />
       </div>
-    );
+    )
   }
 }
 

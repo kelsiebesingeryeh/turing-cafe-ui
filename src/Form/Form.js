@@ -97,7 +97,7 @@ class Form extends Component {
             />
           <button className="reservationButton button"onClick={this.handleSubmit}>Make Reservation</button>
           </form>
-        );
+        )
     }
 }
 

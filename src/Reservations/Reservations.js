@@ -14,10 +14,10 @@ const Reservations = ({ reservations, cancelReservation }) => {
         time={resy.time}
         cancelReservation={cancelReservation}
       />
-    );
-  });
+    )
+  })
 
   return <div className="resyContainer">{reservationsToDisplay}</div>;
-};
+}
 
 export default Reservations

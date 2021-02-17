@@ -1,4 +1,5 @@
 describe("Turing Cafe", () => {
+
     it('Should be allow a user to visit the homepage', () => {
         cy.visit("http://localhost:3000/")
         .get('h1').should('contain', 'Turing Cafe Reservations')
@@ -17,10 +18,10 @@ describe("Turing Cafe", () => {
               },
             })
           })
-        //   .get(".card")
-        //   .should("exist")
-        //   .get(".reservationName")
-        //   .should('exist')
+          .get(".card")
+          .should("exist")
+          .get(".reservationName")
+          .should('exist')
     })
 
     it('Should be able to fill out the form with inputs', () => {
@@ -39,16 +40,16 @@ describe("Turing Cafe", () => {
           .should("have.value", "2");
     })
 
-    it.only('Should be able to make a post request after filling out the form', () => {
+    it('Should be able to make a post request after filling out the form', () => {
         cy.visit("http://localhost:3000/")
           .intercept("POST", "http://localhost:3001/api/v1/reservations", {
             statusCode: 201,
             body: {
               id: 500,
-              name: "Kelsie Yeh",
-              date: "6/5",
-              time: "7:00",
-              number: 2,
+              name: "kelsie b",
+              date: "5/5",
+              time: "6:00",
+              number: 5,
             },
           })
           .get("form input[name=name]")
@@ -92,20 +93,20 @@ describe("Turing Cafe", () => {
           .click()
           .get(".card")
           .should("be.visible");
-    })
-
-    it.skip('Should be able to click the cancel reservation button', () => {
-        cy.visit("http://localhost:3000/")
-        .get(".cancelButton")
-        .click({multiple: true})
-    })
-
-    it.skip('Should be able to cancel the reservation and see the reservation disappear from the screen', () => {
-        cy.visit("http://localhost:3000/")
-          .get(".cancelButton")
-          .click({ multiple: true });
-    })
-
+    })    
 })
 
-//add something to test items inside each card
+
+// NOT WORKING - ACTUALLY MAKING DELETE REQUESTS TO THE SERVER
+
+// it.skip('Should be able to click the cancel reservation button', () => {
+//     cy.visit("http://localhost:3000/")
+//     .get(".cancelButton")
+//     .click({multiple: true})
+// })
+
+// it.skip('Should be able to cancel the reservation and see the reservation disappear from the screen', () => {
+//     cy.visit("http://localhost:3000/")
+//       .get(".cancelButton")
+//       .click({ multiple: true });
+// })

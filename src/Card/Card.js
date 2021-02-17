@@ -12,7 +12,7 @@ const Card = ({ id, name, date, number, time, cancelReservation}) => {
         Cancel
       </button>
     </div>
-  );
-};
+  )
+}
 
 export default Card
