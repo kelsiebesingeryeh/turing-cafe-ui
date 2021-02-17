@@ -9,6 +9,7 @@ describe("Turing Cafe", () => {
         .get('h1').should('contain', 'Turing Cafe Reservations')
         .get('form input[type=text]').should('be.visible')
         .get('button').should('contain', 'Make Reservation')
+        .get('.card').should('be.visible')
     })
 
     // need to test for the network requests
@@ -32,12 +33,24 @@ describe("Turing Cafe", () => {
         cy.get('form button').click()
     })
 
-   
-    
-    // reservation cards
-
-    //Write tests covering what should be displayed on the page when the user first visits.
-// Write a test to check the user flow of adding a new reservation to the page.
-
-
+    it.only('Should be able to make a reservation and have a new reservation appear on the homepage', () => {
+        cy
+          .visit("http://localhost:3000/")
+          .get("form input[name=name]")
+          .type("kelsie")
+          .should("have.value", "kelsie")
+          .get("form input[name=date]")
+          .type("6/5")
+          .should("have.value", "6/5")
+          .get("form input[name=time]")
+          .type("7:00")
+          .should("have.value", "7:00")
+          .get("form input[name=number]")
+          .type("2")
+          .should("have.value", "2")
+          .get("form button")
+          .click()
+          .get(".card")
+          .should("be.visible");
+    })
 })
