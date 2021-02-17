@@ -1,9 +1,4 @@
 describe("Turing Cafe", () => {
-
-    it('Should confirm that true is equal to true', () => {
-        expect(true).to.equal(true)
-    })
-
     it('Should be allow a user to visit the homepage', () => {
         cy.visit("http://localhost:3000/")
         .get('h1').should('contain', 'Turing Cafe Reservations')
@@ -15,7 +10,8 @@ describe("Turing Cafe", () => {
     // need to test for the network requests
 
     it('Should be able to fill out the form with inputs', () => {
-        cy.get("form input[name=name]")
+        cy.visit("http://localhost:3000/")
+          .get("form input[name=name]")
           .type("kelsie")
           .should("have.value", "kelsie")
           .get("form input[name=date]")
@@ -26,14 +22,14 @@ describe("Turing Cafe", () => {
           .should("have.value", "7:00")
           .get("form input[name=number]")
           .type("2")
-          .should("have.value", "2")
+          .should("have.value", "2");
     })
 
     it('Should be able to click the reservation button', () => {
-        cy.get('form button').click()
+        cy.visit("http://localhost:3000/").get("form button").click();
     })
 
-    it.only('Should be able to make a reservation and have a new reservation appear on the homepage', () => {
+    it('Should be able to make a reservation and have a new reservation appear on the homepage', () => {
         cy
           .visit("http://localhost:3000/")
           .get("form input[name=name]")
@@ -54,3 +50,5 @@ describe("Turing Cafe", () => {
           .should("be.visible");
     })
 })
+
+//add something to test items inside each card
