@@ -1,4 +1,5 @@
 import React from 'react'
+import Card from '../Card/Card'
 
 const Reservations = ({ reservations }) => {
     const reservationsToDisplay = reservations.map(resy => {
@@ -14,9 +15,7 @@ const Reservations = ({ reservations }) => {
         )
     })
 
-    return (
-        <h1>Please work!</h1>
-    )
+    return <h3>{reservationsToDisplay}</h3>;
 }
 
 export default Reservations
