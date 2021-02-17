@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '../Card/Card'
+import './Reservations.css'
 
 const Reservations = ({ reservations }) => {
     const reservationsToDisplay = reservations.map(resy => {
@@ -15,7 +16,11 @@ const Reservations = ({ reservations }) => {
         )
     })
 
-    return <h3>{reservationsToDisplay}</h3>;
+    return (
+        <div className='resyContainer'>
+            {reservationsToDisplay}
+        </div>
+    )
 }
 
 export default Reservations
