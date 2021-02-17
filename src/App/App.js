@@ -29,6 +29,16 @@ class App extends Component {
     this.setState({
       reservations: filteredReservations
     })
+    this.deletePostRequest(id)
+  }
+
+  deletePostRequest = (id) => {
+    fetch(`http://localhost:3001/api/v1/reservations/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
   }
 
 
