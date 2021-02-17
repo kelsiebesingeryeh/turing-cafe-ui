@@ -2,8 +2,15 @@ form {
     margin: auto;
 }
 
-input,
-button {
+input {
     margin: 1rem;
     font-size: 1rem;
+}
+
+.reservationButton {
+    font-size: 1rem;
+    background: teal;
+    color: white;
+    width: 11rem;
+    padding: 0.2rem;
 }
