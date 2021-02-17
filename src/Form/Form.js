@@ -24,8 +24,9 @@ class Form extends Component {
             id: Date.now(),
             ...this.state
         }
-        this.props.addReservation(newReservation);
-        this.clearInputs();
+        this.props.addReservation(newReservation)
+        this.clearInputs()
+        this.submitPostRequest()
     }
 
     clearInputs = () => {
@@ -34,7 +35,33 @@ class Form extends Component {
           date: "",
           time: "",
           number: "",
-        });
+        })
+    }
+
+    submitPostRequest = () => {
+        fetch("http://localhost:3001/api/v1/reservations", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: Date.now(),
+            name: this.state.name,
+            date: this.state.date,
+            time: this.state.time,
+            number: parseInt(this.state.number),
+          }),
+        })
+        .then(response => response.json())
+        .then(reservations => {
+            this.setState({
+                id: reservations.id,
+                name: reservations.name,
+                date: reservations.date,
+                time: reservations.time,
+                number: reservations.number
+            })
+        })
     }
 
     render() {
@@ -68,7 +95,7 @@ class Form extends Component {
               value={this.state.number}
               onChange={this.handleChange}
             />
-          <button className="reservationButton"onClick={this.handleSubmit}>Make Reservation</button>
+          <button className="reservationButton button"onClick={this.handleSubmit}>Make Reservation</button>
           </form>
         );
     }

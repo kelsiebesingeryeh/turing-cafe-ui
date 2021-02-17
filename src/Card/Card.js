@@ -8,6 +8,7 @@ const Card = ( {id, name, date, number, time}) => {
             <p>{date}</p>
             <p>{time}</p>
             <p>Number of guests: {number}</p>
+            <button className='cancelButton button'>Cancel</button>
         </div>
     )
 }

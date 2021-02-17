@@ -2,6 +2,15 @@
     box-sizing: border-box;
     background: white;
     color: teal;
-    border: 2px solid teal;
-    border-radius: 5px;
+    border: 5px solid teal;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.button {
+    font-size: 1rem;
+    background: teal;
+    color: white;
+    width: 11rem;
+    padding: 0.2rem;
 }
